@@ -14,5 +14,6 @@ COPY . /app/
 
 WORKDIR /app
 
-EXPOSE 8000
-CMD ["python", "manage.py", "runserver"]
+CMD ["make", "run"]
+
+EXPOSE 8080

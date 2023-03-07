@@ -20,5 +20,5 @@ from api.views import start
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dupa/', start)
+    path('', start)
 ]

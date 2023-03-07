@@ -1,0 +1,12 @@
+db.sqlite3
+**__pycache__**
+.idea*
+.python-version
+**.prof
+venv/
+**/static/*
+
+.DS_Store
+
+.coverage
+/build/

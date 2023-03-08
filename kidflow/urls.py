@@ -6,6 +6,8 @@ from api import views
 router = routers.DefaultRouter()
 router.register(r'schools', views.SchoolViewSet)
 router.register(r'teachers', views.TeacherViewSet)
+router.register(r'parents', views.ParentViewSet)
+router.register(r'students', views.StudentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

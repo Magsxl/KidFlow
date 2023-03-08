@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions
-from api.models import School, Teacher
-from api.serializers import SchoolSerializer, TeacherSerializer
+from api.models import School, Teacher, Parent, Student
+from api.serializers import SchoolSerializer, TeacherSerializer, ParentSerializer, StudentSerializer
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
@@ -12,4 +12,16 @@ class SchoolViewSet(viewsets.ModelViewSet):
 class TeacherViewSet(viewsets.ModelViewSet):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class ParentViewSet(viewsets.ModelViewSet):
+    queryset = Parent.objects.all()
+    serializer_class = ParentSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class StudentViewSet(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentSerializer
     permission_classes = [permissions.IsAuthenticated]

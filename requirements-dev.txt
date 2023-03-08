@@ -1,0 +1,5 @@
+-r requirements.txt
+
+black==23.1.0
+flake8==6.0.0
+isort[colors]==5.12.0

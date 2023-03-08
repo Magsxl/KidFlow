@@ -8,7 +8,7 @@ migrate:
 
 .PHONY: run
 run: migrate
-		python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8080 --insecure
+		python manage.py collectstatic --noinput && python manage.py runserver
 
 .PHONY: migrations
 migrations:
@@ -17,4 +17,10 @@ migrations:
 .PHONY: pip
 pip:
 		python -m pip install --upgrade pip
-		python -m pip install -U -r requirements.txt
+		python -m pip install -U -r requirements-dev.txt
+
+.PHONY: format-all
+format-all:
+		isort api/ kidflow/
+		black -t py310 -l 120 api/ kidflow/
+		flake8 api/ kidflow/

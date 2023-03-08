@@ -13,3 +13,8 @@ run: migrate
 .PHONY: migrations
 migrations:
 		python manage.py makemigrations
+
+.PHONY: pip
+pip:
+		python -m pip install --upgrade pip
+		python -m pip install -U -r requirements.txt

@@ -12,16 +12,16 @@ class SchoolSerializer(serializers.HyperlinkedModelSerializer):
 class TeacherSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Teacher
-        fields = ["name", "surname", "UID", "School"]
+        fields = ["name", "surname", "school", "isAdmin"]
 
 
 class ParentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Parent
-        fields = ["ParentID", "name", "surname", "School"]
+        fields = ["parentID", "name", "surname", "school"]
 
 
 class StudentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Student
-        fields = ["name", "surname", "School", "ParentsID"]
+        fields = ["name", "surname", "school", "parentsID", "isPresent"]

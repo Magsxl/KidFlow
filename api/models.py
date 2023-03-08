@@ -13,27 +13,29 @@ class School(models.Model):
 class Teacher(models.Model):
     name = models.TextField(null=True, blank=True, default="")
     surname = models.TextField(null=True, blank=True, default="")
-    School = models.ForeignKey(School, on_delete=models.CASCADE)
+    school = models.ForeignKey(School, on_delete=models.CASCADE)
+    isAdmin = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.name} {self.surname} at {self.School}"
+        return f"{self.name} {self.surname} at {self.school}"
 
 
 class Parent(models.Model):
-    ParentID = models.TextField(primary_key=True)
+    parentID = models.TextField(primary_key=True)
     name = models.TextField(null=True, blank=True, default="")
     surname = models.TextField(null=True, blank=True, default="")
-    School = models.ForeignKey(School, on_delete=models.SET_NULL, null=True)
+    school = models.ForeignKey(School, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"{self.name} {self.surname} - ID: {self.ParentID}"
+        return f"{self.name} {self.surname} - ID: {self.parentID}"
 
 
 class Student(models.Model):
     name = models.TextField(null=True, blank=True, default="")
     surname = models.TextField(null=True, blank=True, default="")
-    School = models.ForeignKey(School, on_delete=models.CASCADE)
-    ParentsID = models.ForeignKey(Parent, on_delete=models.CASCADE)
+    school = models.ForeignKey(School, on_delete=models.CASCADE)
+    parentsID = models.ForeignKey(Parent, on_delete=models.CASCADE)
+    isPresent = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.name} {self.surname} student at {self.School}"
+        return f"{self.name} {self.surname} student at {self.school}"

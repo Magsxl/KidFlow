@@ -1,5 +1,3 @@
-from random import random
-
 from django.db import models
 
 
@@ -39,6 +37,3 @@ class Student(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.surname} student at {self.School}"
-
-
-

@@ -8,7 +8,7 @@ migrate:
 
 .PHONY: run
 run: migrate
-		python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8080
+		python manage.py runserver
 
 .PHONY: migrations
 migrations:

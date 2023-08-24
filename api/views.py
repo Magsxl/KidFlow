@@ -1,7 +1,19 @@
-from rest_framework import permissions, viewsets
+from django.contrib.auth.models import User
+from rest_framework import generics, permissions, viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from api.models import Parent, School, Student, Teacher
-from api.serializers import ParentSerializer, SchoolSerializer, StudentSerializer, TeacherSerializer
+from api.serializers import (
+    ParentSerializer,
+    RegisterSerializer,
+    SchoolSerializer,
+    StudentSerializer,
+    TeacherSerializer,
+    UserSerializer,
+)
 
 
 class SchoolViewSet(viewsets.ModelViewSet):
@@ -26,3 +38,18 @@ class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class UserDetailAPI(APIView):
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (AllowAny,)
+
+    def get(self, request, *args, **kwargs):
+        user = User.objects.get(id=request.user.id)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+
+
+class RegisterUserAPIView(generics.CreateAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer

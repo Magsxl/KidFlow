@@ -1,12 +1,30 @@
+#version: "3.10"
+#
+#services:
+#  django:
+#    container_name: kidflow
+#    image: kidflow
+#    volumes:
+#      - .:/app
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8080:8080"
 version: "3.10"
+
 services:
-  api:
-    container_name: kidflow
-    image: kidflow
+  django:
+    build: ./backend
+    container_name: django-backend
+    ports:
+      - "8000:8000"
     volumes:
       - .:/app
-    build:
-      context: ./
-      dockerfile: Dockerfile
+  react:
+    build: ./frontend
+    container_name: react-frontend
     ports:
-      - "8080:8080"
+      - "3000:3000"
+    depends_on:
+      - django
